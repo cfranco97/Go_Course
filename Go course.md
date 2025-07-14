@@ -1,5 +1,3 @@
-
-
 # Commands
 `go mod init example.com/name` - creates a go.mod file to track all the code's dependencies.
 `go run .` Runs the app stored in that folder
@@ -8,6 +6,8 @@
 
 
 # Notes
+
+[Download GO](https://go.dev/dl/)
 
 ## Structs
 - `structs` that start with **Uppercase** can be exported outside of their packages, while lowercases can only be used locally 
@@ -28,12 +28,13 @@
 	- use `bufio.NewReader()` function instead for longer inputs (with spaces)
 
 ## Functions: deep dive
-- You can use functions has arguments in other functions, for exemple, creating a generic function to multiply numbers, create a function to double() the numbers and another to triple() them.
+- You can use functions has arguments in other functions, for example, creating a generic function to multiply numbers, create a function to double() the numbers and another to triple() them.
 - Then just have a generic function that takes in the numbers array to transform and the function that will run the multiplication.
 - Bonus:
 	- Create a custom function type to avoid lengthy verbose functions by declaring them at the start of the code (before main)
 	- `type transformFn func(int) int`
 	- usage: `transform transformFn`
+- Every **anonymous function** is a **closure**, this means if you defined a function that creates another function with **an argument**, that created function's arguments will be locked in. Because it was defined so by its parent function!
 ## Interfaces
 - **Interfaces**: guarantees that a certain *value* has a certain *method* implemented.
 	- Interfaces **don't define the logic** of the method, only that it exists.

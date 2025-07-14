@@ -1,25 +1,26 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
-// create a custom type - to avoid verbose function lengths inside the generic function!
-type transformFn func(int) int // receives: int ; returns: int
-
+// Variadic functions
 func main() {
-	numbers := []int{1, 2, 3, 4}
-	doubled := transformNumbers(&numbers, double) // don't put '()' so we can use double function as an argument instead of executing it!
-	fmt.Println(doubled)
+	numbers := []int{1, 2, 3, 4, 5}
+	sum := sumup(1, 2, 3, 4, 5)        // first value will be 1, the remaining will go into the numbers ... array
+	anotherSum := sumup(1, numbers...) // still uses numbers array as input
+	fmt.Println(sum)
+	fmt.Println(anotherSum)
 }
 
-// A Generic function that will return an array '[]int' - takes in a pointer to some numbers array and a function that will transform the numbers in said array.
-func transformNumbers(numbers *[]int, transform transformFn) []int {
-	tNumbers := []int{} // new empty array to return later
-	for _, val := range *numbers {
-		tNumbers = append(tNumbers, transform(val)) // recursive!
+// Accepts different input arguments as long as the type is correct!
+// The ... essencially merge all incoming int values into a slice/array (mouse over numbers argument to verify it!)
+func sumup(startingval int, numbers ...int) int {
+	sum := 0
+
+	for _, val := range numbers {
+		sum += val
 	}
-	return tNumbers
-}
 
-func double(number int) int {
-	return number * 2
+	return sum
 }
